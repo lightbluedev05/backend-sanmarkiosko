@@ -2,7 +2,7 @@ import pg from "pg";
 import { environment } from "./environment.js";
 
 // Configurar node-postgres para parsear DECIMAL/NUMERIC (OID 1700) como float de JS
-pg.types.setTypeParser(1700, (val) => parseFloat(val));
+pg.types.setTypeParser(1700, (val: string) => parseFloat(val));
 
 const { Pool } = pg;
 
@@ -16,7 +16,7 @@ pool.on("connect", () => {
   console.log("🔋 Conexión establecida con la base de datos PostgreSQL en Supabase.");
 });
 
-pool.on("error", (err) => {
+pool.on("error", (err: Error) => {
   console.error("❌ Error inesperado en el cliente del pool de base de datos:", err);
 });
 

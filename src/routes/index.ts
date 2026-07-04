@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import authRoutes from "./auth.routes.js";
 import listingRoutes from "./listing.routes.js";
 import userRoutes from "./user.routes.js";
@@ -8,7 +8,7 @@ import favoriteRoutes from "./favorite.routes.js";
 const router = Router();
 
 // Endpoint de verificación de estado del backend
-router.get("/health", (req, res) => {
+router.get("/health", (req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     message: "Servidor API de Sanmarkiosko en funcionamiento.",
