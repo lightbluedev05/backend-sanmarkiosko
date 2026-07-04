@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import routes from "./routes/index.js";
 import { errorHandler, ApiError } from "./middleware/error.middleware.js";
@@ -21,7 +21,7 @@ app.use(express.json());
 app.use("/api", routes);
 
 // Capturar endpoints no encontrados (404)
-app.use((req, res, next) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   next(new ApiError(404, `No se encontró la ruta solicitada: ${req.method} ${req.originalUrl}`));
 });
 
